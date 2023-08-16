@@ -1,6 +1,9 @@
 <script lang="ts">
     import LogEntryTable from "./LogEntryTable.svelte";
+    import GraphCard from "./GraphCard.svelte";
     import type { PageData } from "./$types";
+    import ImageSlider from "./ImageSlider.svelte";
+
     
     export let data: PageData
     
@@ -8,10 +11,10 @@
 
 <div class="container-fluid">
     <div class="grid">
-        <!-- <GraphCard />
-        <ImageSlider imageIds={$loaded_sensor_data.map(x => x.webcamImageId)}/>	 -->
+        <GraphCard chartData={data.measurementResponse.measurements} />
+        <ImageSlider webcamImages={data.webcamImages}/>
     </div>
     <div>
-        <LogEntryTable measurements={data.measurements} />
+        <LogEntryTable measurements={data.measurementResponse.measurements} />
     </div>
 </div>

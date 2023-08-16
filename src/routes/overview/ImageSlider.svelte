@@ -1,0 +1,67 @@
+<script lang="ts">
+
+    export let webcamImages:string[]
+
+
+    let currentIndex = 0;
+    
+    // data:image/jpeg;base64,{webcamImages[0]}
+
+
+    const next = () => {
+        if (currentIndex < webcamImages.length - 1) {
+            currentIndex++;
+            updateImage()
+        }
+    }
+
+    const prev = () => {
+        if (currentIndex > 0) {
+            currentIndex--;
+            updateImage()
+        }
+    }
+
+    const updateImage = () => {
+        let imageHtmlElement = document.getElementById("webcamimage") as HTMLImageElement
+        imageHtmlElement.src = "data:image/jpeg;base64," + webcamImages[currentIndex]
+    }
+</script>
+
+<article>
+	<header>Webcam</header>
+	<body class="slideshow-container">
+		<center>
+			<button class="prev" on:click={prev} disabled="{currentIndex == 0}">&#10094;</button>
+
+			<button class="next" on:click={next}  disabled="{currentIndex == webcamImages.length - 1}">&#10095;</button>
+			<img id="webcamimage"
+				src="data:image/jpeg;base64,{webcamImages[0]}"
+				alt="Latest webcam"
+			/>
+		</center>
+	</body>
+</article>
+
+<style>
+	.slideshow-container {
+		position: relative;
+		margin: auto;
+	}
+
+    .prev, .next {
+        position: absolute;
+        top: 50%;
+        margin-top: -22px;
+		user-select: none;
+		width: auto;
+    }
+
+	.prev {
+		left: 10px;
+	}
+
+    .next {
+        right: 10px;
+    }
+</style>
