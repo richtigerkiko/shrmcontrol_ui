@@ -1,15 +1,16 @@
 import { getImages, getSensorEntries } from '$lib/api';
 import type { GetSensorEntriesResponse } from '$lib/interface/GetSensorEntriesResponse';
-import type { PageServerLoad  } from './$types';
+import type { PageLoad  } from './$types';
 
-process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
+// for debug and local server
+// process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0'
 
 interface OverViewPageData {
     measurementResponse: GetSensorEntriesResponse
     webcamImages: string[]
 }
 
-export const load: PageServerLoad  = async () => {
+export const load: PageLoad  = async () => {
     var pageresult: OverViewPageData = {} as OverViewPageData
 
     let images =  getImages(8)
@@ -19,8 +20,6 @@ export const load: PageServerLoad  = async () => {
             y.value = parseFloat(y.value.toFixed(2))
         })
     })
-
-    
 
     pageresult.measurementResponse = apiResponse
     pageresult.webcamImages = await images

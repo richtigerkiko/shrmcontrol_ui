@@ -10,7 +10,7 @@
 		</ul>
 		<ul>
 			<li><a href="overview">Overview</a></li>
-			<li><a href="/">Control</a></li>
+			<li><a href="control">Control</a></li>
 			<li><a href="/" role="button">Signin</a></li>
 		</ul>
 	</nav>

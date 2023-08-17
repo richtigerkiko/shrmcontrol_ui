@@ -1,4 +1,6 @@
 import type { GetSensorEntriesResponse } from "./interface/GetSensorEntriesResponse"
+import type { Headunit } from "./interface/Headunit"
+import type { RuleSet } from "./interface/RuleSet"
 import { Timeresolution } from "./interface/TimeResolution"
 
 let baseUrl = "https://shroomcontrol.warumhalbmast.de/api"
@@ -23,6 +25,30 @@ export async function getImages(count = 3): Promise<string[]>{
             count: String(count)
         }))
         return await response.json() as string[]
+    }
+    catch (e) { 
+        console.log(e)
+        throw e
+    }
+}
+
+export async function getHeadunits(): Promise<Headunit[]>{
+    try {
+        const response = await fetch(baseUrl + '/Administration/GetHeadunits')
+        return await response.json() as Headunit[]
+    }
+    catch (e) { 
+        console.log(e)
+        throw e
+    }
+}
+
+export async function getActiveRuleSet(headunit:string): Promise<RuleSet>{
+    try {
+        const response = await fetch(baseUrl + '/Rules/GetActiveRuleSet?' + new URLSearchParams({
+            hostname: String(headunit)
+        }))
+        return await response.json() as RuleSet
     }
     catch (e) { 
         console.log(e)

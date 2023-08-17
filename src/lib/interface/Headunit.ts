@@ -1,7 +1,7 @@
 export interface Headunit {
-    Id: string,
-    Hostname: string,
-    Location: string,
-    Description: string,
-    LastOnline: Date
+    id: string,
+    hostname: string,
+    location: string,
+    description: string,
+    lastOnline: Date
 }
