@@ -32,13 +32,16 @@
 	<header>Webcam</header>
 	<body class="slideshow-container">
 		<center>
-			<button class="prev" on:click={prev} disabled="{currentIndex == 0}">&#10094;</button>
+			<!-- <button class="prev" on:click={prev} disabled="{currentIndex == 0}">&#10094;</button>
 
 			<button class="next" on:click={next}  disabled="{currentIndex == webcamImages.length - 1}">&#10095;</button>
 			<img id="webcamimage"
 				src="data:image/jpeg;base64,{webcamImages[0]}"
 				alt="Latest webcam"
-			/>
+			/> -->
+            <video src="https://shroomcontrol.warumhalbmast.de/api/Sensor/GetVideo" autoplay loop style="width:100%">
+                <track kind="captions">
+            </video>
 		</center>
 	</body>
 </article>
