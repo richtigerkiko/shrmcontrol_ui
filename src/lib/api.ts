@@ -5,7 +5,7 @@ import { Timeresolution } from "./interface/TimeResolution"
 
 let baseUrl = "https://shroomcontrol.warumhalbmast.de/api"
 
-export async function getSensorEntries(logentry_count = 12, logentry_timeresolution: Timeresolution = Timeresolution.Minutes): Promise<GetSensorEntriesResponse> {
+export async function getSensorEntries(logentry_count = 12, logentry_timeresolution: Timeresolution = Timeresolution.Hours): Promise<GetSensorEntriesResponse> {
     try {
         const response = await fetch(baseUrl + '/Sensor/GetSensorEntries?' + new URLSearchParams({
             count: logentry_count.toString(),
