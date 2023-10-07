@@ -41,7 +41,7 @@
                 x: {
                     type: 'time',
 					time: {
-						unit: 'minute',
+						unit: 'hour',
 						tooltipFormat: 'yyyy-MM-DD HH:mm:ss'
 					}
                 }

@@ -7,6 +7,7 @@
     
     // data:image/jpeg;base64,{webcamImages[0]}
 
+    let currentDisplay: "Webcam"|"Timelapse" ="Webcam"
 
     const next = () => {
         if (currentIndex < webcamImages.length - 1) {
@@ -29,21 +30,32 @@
 </script>
 
 <article>
-	<header>Webcam</header>
+	<header>{currentDisplay}</header>
 	<body class="slideshow-container">
 		<center>
-			<!-- <button class="prev" on:click={prev} disabled="{currentIndex == 0}">&#10094;</button>
+            {#if currentDisplay=="Webcam"}
+                <button class="prev" on:click={prev} disabled="{currentIndex == 0}">&#10094;</button>
 
-			<button class="next" on:click={next}  disabled="{currentIndex == webcamImages.length - 1}">&#10095;</button>
-			<img id="webcamimage"
-				src="data:image/jpeg;base64,{webcamImages[0]}"
-				alt="Latest webcam"
-			/> -->
-            <video src="https://shroomcontrol.warumhalbmast.de/api/Sensor/GetVideo" autoplay loop style="width:100%">
-                <track kind="captions">
-            </video>
+                <button class="next" on:click={next}  disabled="{currentIndex == webcamImages.length - 1}">&#10095;</button>
+                <img id="webcamimage"
+                    src="data:image/jpeg;base64,{webcamImages[0]}"
+                    alt="Latest webcam"
+                />
+            {:else}
+            <div>
+                <video src="https://shroomcontrol.warumhalbmast.de/api/Sensor/GetVideo" autoplay loop muted style="width:100%">
+                    <track kind="captions">
+                </video>
+            </div>
+            {/if}
 		</center>
 	</body>
+    <footer>
+        <div class="grid">
+            <button on:click={() => currentDisplay = "Webcam"}>Webcam</button>
+            <button on:click={() => currentDisplay = "Timelapse"}>Time-lapse</button>
+        </div>
+    </footer>
 </article>
 
 <style>
@@ -66,5 +78,9 @@
 
     .next {
         right: 10px;
+    }
+
+    video, img {
+        transform: rotate(-90deg);
     }
 </style>
